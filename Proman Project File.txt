@@ -50,13 +50,16 @@ c:\
             upload
             list
             backup
+            docs|man
             help
             inject
 
 Env Vars:
 proman-global = # defaults to user profile folder
 
-
+Notes:
+    -all project names can be exported into a "code.bat"-like file where the names can be called
+        directly instead of specifying the entire directory, if enabled in the proman.cfg
 
 ###############################################
 cmds.proman
@@ -94,7 +97,7 @@ projdrive
 
 # a json or human-readable json or xml serialized file that user can edit
 ###############################################
-proj.proman
+proman.cfg
 ###############################################
 [settings]
 vcs: git

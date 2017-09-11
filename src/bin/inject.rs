@@ -69,10 +69,12 @@ fn main() {
     //    writeln!(stderr, "arg: {:?}", a);
     // }
     
-    let mut curdir = env::current_dir().unwrap();
     // let mut test = env::current_dir().unwrap();
     // test.set_file_name("proman.cfg");
+    
+    let curdir = env::current_dir().unwrap();
     let test = env::current_dir().unwrap().join("proman.cfg");
+    
     let add = vec![
         PathBuf::from(r"c:\code\lang\rust\proj\cmds\target\release"),
     ];
@@ -82,7 +84,7 @@ fn main() {
     let mut stderr = std::io::stderr();
     
     if  !test.exists() {
-        writeln!(stderr, "No proman file found in {:?} / {:?}", test, curdir);
+        // writeln!(stderr, "No proman file found in {:?} / {:?}", test, curdir);
         let mut old: Vec<PathBuf> = Vec::new();
         /*
         for v in &paths {
