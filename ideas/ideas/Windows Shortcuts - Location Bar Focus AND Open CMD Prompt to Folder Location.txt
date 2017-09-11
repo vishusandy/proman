@@ -1,0 +1,22 @@
+F2	Rename an item
+Alt+D	Move focus to location bar
+
+
+Open CMD Prompt to Location of a Folder:
+  Alt+F then m then p or a (P for regular prompt or A for admin prompt)
+	(Based on Shift+Alt+F then M	Open CMD Prompt from folder window)
+ OR
+  Type CMD in Location Bar to open a CMD Prompt frmo folder
+ OR
+  Alt+F then right click on Open Command Prompt and click add to quick access
+    this adds an icon to the title bar
+
+
+Copy File Paths/Locations From Explorer:
+Select files, hold shift and right-click, press a or select copy as path
+
+Alt+ArrowUp	Go to parent folder
+Alt+ArrowLeft	Go back
+Alt+ArrowRight	Go forward
+
+

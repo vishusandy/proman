@@ -1,0 +1,61 @@
+dark brown bg
+#2f1a17
+47 26 23
+
+rust redish
+#c93d33
+201 61 51
+
+bluish
+#33a6c9
+51 166 201
+
+bluish #2
+51 189 255
+
+bluish #3
+45 182 227
+
+dark bluish
+21 71 85
+
+dark bluish #2
+21 75 119
+
+green #1
+39 220 85
+
+comment yellow
+#e7d613
+231 214 19
+
+comment yellow #2
+241 230 86
+
+shell standard text
+0 155 230
+
+shell stdout text
+89 185 213
+
+shell std error bg
+83 11 11
+
+original python keywords orange
+255 119 0
+
+dark bluish
+21 66 89
+17 54 72
+
+orange
+254 151 48
+
+purple
+173 91 255
+
+
+
+
+
+

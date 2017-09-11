@@ -1,0 +1,12 @@
+Eject removable[ drives]
+Eject <drive>   //Make sure to check to see that it is removable!
+
+
+//List drives
+fsutil fsinfo drives
+
+//Check if it is removable or not
+fsutil fsinfo drivetype <drive>
+
+//Eject the device - make sure to eject only a removable device (if ejecting a specific drive)
+fsutil volume dismount <drive>

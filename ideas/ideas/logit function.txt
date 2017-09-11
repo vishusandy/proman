@@ -1,0 +1,3 @@
+log(x/(1-x)) = log(x) - log(1-x)
+
+log base e is most often used but of little importance given that it is greater than 1

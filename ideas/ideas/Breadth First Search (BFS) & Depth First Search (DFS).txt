@@ -1,0 +1,65 @@
+Breadth First Search (BFS)
+        1
+      / | \
+    2   3   4
+      /   \     |
+    5       6   7
+    |     / | \
+    8    9 10 11
+https://www.ics.uci.edu/~eppstein/161/960215.html
+    unmark all vertices
+    choose some starting vertex x
+    mark x
+    list L = x
+    tree T = x
+    while L nonempty
+    choose some vertex v from front of list
+    visit v
+    for each unmarked neighbor w
+        mark w
+        add it to end of list
+        add edge vw to T
+
+
+Depth First Search
+          1
+       /  |  \
+     2    |    9
+   / | \  |    | \
+  3  4  5 |   10  11
+        / | \     |
+       6  7  8  / | \
+              12  13 14
+
+https://www.ics.uci.edu/~eppstein/161/960215.html
+Recursive:
+    preorder(node v)
+    {
+    visit(v);
+    for each child w of v
+        preorder(w);
+    }
+
+Iterative:
+    dfs(vertex v)
+    {
+    visit(v);
+    for each neighbor w of v
+        if w is unvisited
+        {
+        dfs(w);
+        add edge vw to tree T
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+

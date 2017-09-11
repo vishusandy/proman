@@ -1,0 +1,56 @@
+Numeric Prefixes
+by Craig Froehle
+froehlcm@ucbeh.san.uc.edu
+
+Prefix	Abbrev	Multiplier
+------	------	----------
+yocto	y	10E-24
+zepto	z	10E-21
+atto	a	10E-18
+femto	f	10E-15
+pico	p	10E-12
+nano	n	10E-9
+micro   µ (mu)  10E-6
+milli	m	10E-3
+centi	c	10E-2
+deci	d	10E-1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+deka	da	10E+1
+hecto	h	10E+2
+kilo	k	10E+3
+mega	M	10E+6
+giga	G	10E+9
+tera	T	10E+12
+peta	P	10E+15
+exa	E	10E+18
+zetta	Z	10E+21
+yotta	Y	10E+24
+octillion	10E+27
+nonillion	10E+30

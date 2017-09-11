@@ -1,0 +1,17 @@
+Order doesn't matter:	combination
+Order does matter:	permutation
+
+notation:	n=number of choices
+		r=number of 
+
+Combination formula:
+	No repitition:	(n!)/((n-r)!)
+		example: 
+	Repitition:	((n+r-1)!)/(r!(n-1)!)
+		example: there are 5 candy flavors, you can choose 3 peices, how many variations are possible?
+
+Permutation formula:
+	choices^
+		example: 
+
+		example: 

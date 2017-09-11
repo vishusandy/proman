@@ -1,0 +1,56 @@
+
+
+proman.bat
+executes a bat file which adds the proman files to the PATH env variable
+
+save/commit
+new
+  existing <project name>   creates 
+  project name
+template
+  list/help
+  templatename filename    prompt to keep filename or rename if filename has no ext
+
+increment version for rust projects when saving
+create directory junction for new web projects
+
+
+cd
+get dir of the proman file and save it in the config/context struct
+
+autorun
+list of programs to run when running other commands
+
+get list of files at run
+
+
+
+
+users/<user>/.proman
+proman.cfg
+projdefs/
+    *.prodef
+templates/
+
+
+
+
+
+.prodef
+Name	   
+Type	   
+Compile	   
+Execute	   
+Template   
+CustomCmds 
+
+.proman
+Name
+Type
+Language
+CustomCmds
+
+
+
+
+

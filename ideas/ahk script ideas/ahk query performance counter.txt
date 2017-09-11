@@ -1,0 +1,6 @@
+; Example: Demonstrates QueryPerformanceCounter(), which gives more precision than A_TickCount's 10ms.
+
+DllCall("QueryPerformanceCounter", "Int64 *", CounterBefore)
+Sleep 1000
+DllCall("QueryPerformanceCounter", "Int64 *", CounterAfter)
+MsgBox % "Elapsed QPC time is " . CounterAfter - CounterBefore

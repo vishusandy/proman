@@ -1,0 +1,93 @@
+;Taken from http://www.autohotkey.com/forum/topic10466-30.html
+#NoEnv
+COM_Init()
+; Init now since it can be reused for multiple requests.
+req := COM_CreateObject("WinHttp.WinHttpRequest.5.1")
+
+LoginPage = http://www.autohotkey.com/forum/login.php
+Redirect = privmsg.php?folder=inbox
+Username =
+Password =
+
+Gui, Add, Edit, vLoginPage W300 R1, %LoginPage%
+Gui, Add, Text,, Username:
+Gui, Add, Edit, vUsername XM+100 YP-2 W200, %Username%
+Gui, Add, Text, XM, Password:
+Gui, Add, Edit, vPassword XM+100 YP-2 W200 Password, %Password%
+Gui, Add, Button, gCheckPrivmsg Default, Check Private Messages
+
+Gui, Show,, privmsg test
+return
+
+
+CheckPrivmsg:
+
+Gui, Submit, NoHide
+postData := "username=" uriEncode(UserName)
+         . "&password=" uriEncode(Password)
+         . "&autologin=0&redirect=" uriEncode(Redirect)
+         . "&login=Log+in"
+
+; POST form data to the login page.
+COM_Invoke(req, "Open", "POST", LoginPage)
+COM_Invoke(req, "SetRequestHeader", "Content-Type", "application/x-www-form-urlencoded")
+COM_Invoke(req, "Send", postData)
+; Retrieve HTML of the response page (%Redirect%).
+html := COM_Invoke(req, "ResponseText")
+
+; Create a HTMLDocument to parse the HTML.
+doc := COM_CreateObject("{25336920-03F9-11CF-8FD0-00AA00686F13}")
+COM_Invoke(doc, "write", html)
+COM_Invoke(doc, "close")
+
+; "Retrieves a collection of all 'a' objects that specify the HREF property and
+;  all 'area' objects in the document."
+doc_links := COM_Invoke(doc, "links")
+
+Loop, % COM_Invoke(doc_links, "length")
+{
+    link := COM_Invoke(doc_links, "item", A_Index-1)
+
+    if InStr(COM_Invoke(link, "href"), "privmsg.php?folder=inbox")
+    {
+        text := COM_Invoke(link, "innerText")
+        COM_Release(link)
+        break
+    }
+
+    COM_Release(link)
+}
+
+COM_Release(doc_links)
+COM_Release(doc)
+
+; <DEBUG>
+; FileDelete, check privmsg debug.html
+; FileAppend, %html%, check privmsg debug.html
+; Run, check privmsg debug.html
+; </DEBUG>
+
+MsgBox %text%
+
+return
+
+
+GuiClose:
+ExitApp
+
+
+; Authors: Titan, Ageless
+;   http://www.autohotkey.com/forum/topic18876.html
+uriEncode(str) {
+   f = %A_FormatInteger%
+   SetFormat, Integer, Hex
+   If RegExMatch(str, "^\w+:/{0,2}", pr)
+      StringTrimLeft, str, str, StrLen(pr)
+   StringReplace, str, str, `%, `%25, All
+   Loop
+      If RegExMatch(str, "i)[^\w\.~%/:]", char)
+         StringReplace, str, str, %char%, % "%" . SubStr(Asc(char),3), All
+      Else Break
+   SetFormat, Integer, %f%
+   Return, pr . str
+}

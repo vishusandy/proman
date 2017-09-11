@@ -1,0 +1,21 @@
+palindrome	word that is the exact same when it is reversed.
+	Level, madam, level!
+
+
+Semordnilap: word that changes to another word when reversed. (Semordnilap backwards is palindromes)
+stressed    =    desserts
+ gateman    =    nametag
+   straw    =    warts
+    star    =    rats
+    stop    =    pots
+    snap    =    pans
+   lived    =    devil
+    live    =    evil
+  diaper    =    repaid
+   smart    =    trams
+    spit    =    tips
+     dog    =    god
+     gut    =    tug
+    maps    =    spam
+     war    =    raw
+

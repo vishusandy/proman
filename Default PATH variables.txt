@@ -1,0 +1,8 @@
+User PATH
+
+C:\Users\Andrew\AppData\Roaming\local\bin;C:\Users\Andrew\.cargo\bin;C:\Users\Andrew\AppData\Roaming\cabal\bin;C:\Programs\Ruby23-x64\bin;C:\Users\Andrew\AppData\Local\Microsoft\WindowsApps;C:\Users\Andrew\AppData\Local\atom\bin;C:\msys64\usr\bin;C:\Users\Andrew\AppData\Roaming\npm;C:\Users\Andrew\AppData\Local\GitHubDesktop\bin
+
+
+System PATH
+
+C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\8.0.2\lib\extralibs\bin;C:\Program Files\Haskell Platform\8.0.2\bin;C:\Program Files\Python36\;C:\Program Files\Git\usr\bin;C:\cygwin64\bin;%SystemRoot%\system32;%SystemRoot%;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files\Haskell Platform\8.0.2\mingw\bin;C:\PortableApps\cmds;C:\HashiCorp\Vagrant\bin;C:\Program Files\PuTTY\;C:\Program Files\nodejs\;C:\laragon\bin\php\php-7.1.1-Win32-VC14-x86;C:\laragon\bin\composer;C:\laragon\bin\yarn\bin;C:\Program Files\Python36\Scripts

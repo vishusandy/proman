@@ -1,0 +1,13 @@
+REM IMPORTANT:
+REM First kill explorer.exe
+
+REM This clears the icon cache in Windows
+
+CD /d %userprofile%\AppData\Local
+DEL IconCache.db /a
+
+REM Windows 8+, this clears another section of the cache
+CD %userprofile%\AppData\Local\Microsoft\Windows\Explorer
+DEL IconCache*.db /a
+EXIT
+
