@@ -1,3 +1,0 @@
-Shannon Entropy is found by first finding the number of times each symbol (byte) occurs in a file,
-Next the following formula is applied for each symbol and added together
-	(symbol occurrence/# symbols) * log2(symbol occurrence/# symbols)

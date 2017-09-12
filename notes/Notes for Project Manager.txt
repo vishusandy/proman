@@ -1,0 +1,91 @@
+
+use commands to create and manipulate files in a project folder
+keeps track of author, desciption, version, language, project type (bin, lib, etc)
+
+new
+specify either existing or the language like
+new existing 
+languages can have tempates, and file or project should be specified
+  but if it is not then a file is created unless there is no project file found in the directory or the parent directory
+new rust project <template> <new file name>
+new rust project library <name>
+new rust file <template> <new file name>
+
+can also create directory juntions for projects like
+juntion c:\code\www as rust project battleship
+  will create a new rust project named battlehsip in the cd as well as c:\code\www as a directory junction in windows, so both folders will refer to same contents
+or if the cd (or its parent) contains a project manager file you can link an existing project to another folder like
+junction c:\code\www to/as existing
+
+
+save / commit
+increments the version number of the program then `git add .` then a `git commit`
+  save <file>
+  save new
+  save
+
+settings
+  settings [all]	display all settings for the project
+  settings commands	display only custom commands for the project
+  settings sync		display all sync files for the project
+  settings vars|variables  displays all variable settings for the project
+
+
+Variables:
+projdir
+projdrive
+globaldir
+globaldrive
+templatedir
+templatedrive
+bindir
+bindrive
+promancreated   # datetime that the project was created
+promanmodified  # datetime that the pro.man file was last modified
+
+
+
+search file(s)
+  glob file support
+  find avg length of lines that match a regex
+  find min/max length of lines
+  allow for regex pattern search
+
+advanced directory changer
+  with path completion
+  with configurable entries
+    can interactively tupe add entry "nickname" "path"
+  show listing of entries
+create templates
+increment versioin
+create files
+auto build & run project (c++, php, ruby, python, rust, etc)
+create git repo (either run git cmd or find out how to copy the files and if the files are the same or if the project name/folder is embedded in the repo files somewhere)
+
+reads markdown files in console
+create markdown files for help/documentation (bold text etc, code examples)
+lint/minimize files
+count lines of code
+find entropy
+hash file(s)
+encrypt files/text from stdin
+compress files
+archive files
+break file into multiple files of a certain size
+merge files together
+
+randproj
+passgen
+md5/sha1/sha256/sha512/sha3crc/etc
+aes/des/3des/
+
+
+
+====Useful Links=======================
+
+Terminal Color
+https://crates.io/crates/term
+
+
+
+

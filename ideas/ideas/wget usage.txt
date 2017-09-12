@@ -1,1 +1,0 @@
-wget --recursive --relative http://website.com
