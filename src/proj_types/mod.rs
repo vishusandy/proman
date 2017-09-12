@@ -1,14 +1,25 @@
 use std::path::{Path, PathBuf};
 use std::ffi::OsString;
 use std::collections::HashMap;
+use std::fmt;
 
 // See below link for more info on library types
 // https://doc.rust-lang.org/reference/linkage.html
 
-// Sub-modules
-mod proj_rust;
+/* TODO:
+    Figure out how to structure the various config info for
+        the various languages/project types so that they override default
+    Reorganize the Command(s) data structures
+    Implement: 
+        Display/ToString
+        Clone/Copy
+        
+*/
 
+// Sub-modules - re-work proj_rust to reflect changes made to this file
+// mod proj_rust;
 
+#[derive(Debug)]
 pub enum Language {
     AutoHotKey,
     AutoIt,
@@ -26,6 +37,15 @@ pub enum Language {
     Web,        // Html, Html5, Xml, Xhtml, Sass, Less
     Custom(String),
     Error,
+}
+
+impl fmt::Display for Language {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match self {
+            Language::Custom(custom) => write!(f, "{}", custom),
+            _ => write!(f, "{:?}", self),
+        }
+    }
 }
 
 
@@ -63,11 +83,20 @@ impl VarString {
         format!("{1}{0}", self.string, if self.parsed { "@" } else { "Raw!" })
     }
 }
+impl fmt::Display for VarString {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+            write!(f, "{}", self.display())
+    }
+}
+
 impl HasVars for VarString {
     pub fn list_vars(&self) -> Vec<String> {
         // do a regex search
     }
     pub fn replace_vars(&self, proman: &Proman) -> VarString {
+        if self.parsed {
+            return self;
+        }
         let mut newstr = self.string; // or self.string.clone() if needed
         for v in self.list_vars() {
             newstr.replace(v, proman.lookup_var(&v))
@@ -98,6 +127,18 @@ impl Runable for Executable {
         source.exists() && source.is_file()
     }
 }
+impl HasVars for Executable {
+    pub fn replace_vars(&self, proman: &Proman) -> Executable {
+        Executable {
+            args: if self.args.is_some() {
+                Some(self.args.repace_vars(proman))
+            } else {
+                None
+            },
+            .. self
+        }
+    }
+}
 
 pub struct Document {
     source: PathBuf,
@@ -106,7 +147,29 @@ pub struct Document {
 }
 
 impl Runable for Document {
-    
+    pub fn run(&self) -> Result<String, String> {
+        
+    }
+    pub fn exists(&self) -> bool {
+        // do not need to check if is_file() because it may not be
+        self.source.exists() && self.open_with.exists() 
+    }
+}
+impl HasVars for Document {
+    pub fn replace_vars(&self, proman: &Proman) -> Document {
+        Document {
+            args: if let Some(arg) = self.open_with.args {
+                Some(if !arg.parsed {
+                    arg.replace_vars(proman)
+                } else {
+                    arg
+                })
+            } else {
+                None
+            },
+            .. self
+        }
+    }
 }
 
 // Version Control System
@@ -138,7 +201,7 @@ pub struct Doc {
 }
 
 pub struct Docs {
-    docs: 
+    docs: Vec<Doc>,
 }
 
 pub struct AutoRuns {
@@ -176,6 +239,11 @@ pub struct junction {
 pub struct Junctions {
     junctions: Cec<Junction>,
 }
+
+
+// TODO:
+// Reorganize Commands
+// Also add an AutoRuns struct to Commands
 
 pub enum CommandDest {
     Execute(Executable),
@@ -283,10 +351,10 @@ pub struct ProjCfg {
     dir: PathBuf,
     vcs: Vcs,
     lang: Language,
-    projtype: String,
+    proj_type: String,
     custom_docs: AllDocs,
     custom_templates: AllTemplates,
-    commands: Commands,
+    commands: CommandData,
     junctions: Junctions,
     sync_files: SyncFiles,
     
