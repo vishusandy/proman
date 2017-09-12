@@ -12,6 +12,13 @@ When an executable is called it calls some functions that return the Proman stru
 How to make the proj_type module have the structs/enums to hold all the data but
   at the same time be able to have different languages/project types with different default data???
 
+TODO:
+figure out how VarStr's should reference arguments passed to the executable
+    maybe something like {{flag:-t,--table}} for an arg that is True if present, 
+    or {{!flag:-t,--table}} for a flag that is stored as false is present.
+    For a stored type maybe use {{arg:--layout}}
+    Do not worry about types that parse into structs, conversation happens in called executable
+Allow VarStr's to have custom vars parsed into them
 
 
 c:\
@@ -47,7 +54,8 @@ c:\
             python.chm
             ...
         bin\
-            save/commit
+            save/commit // parses vars of the argument string according to 
+			//   args passed to executable and config info
             new
             template
             docs|man

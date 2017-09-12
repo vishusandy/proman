@@ -104,6 +104,32 @@ impl Config for Proman {
         
         deserial
     }
+    
+// pub fn get_cfg_msgpack() -> Cfg {
+//     let mut fo = File::open("config.cfg");
+//     match fo {
+//         Ok(mut f) => {
+//             let mut buf = Vec::new();
+//             f.read_to_end(&mut buf);
+//             let mut de = Deserializer::new(&buf[..]);
+//             let out: Cfg = Deserialize::deserialize(&mut de).expect("Could not deserialize configuration file");
+//             out
+//         },
+//         Err(_) => set_cfg_msgpack(),
+//     }
+// }
+
+// pub fn set_cfg_msgpack() -> Cfg {
+//     let c = Cfg {
+//         custom_dir: Path::new(DEFAULT_DIR).canonicalize().unwrap_or(PathBuf::new()).to_str().unwrap_or("").to_string(),
+//         default_width: DEFAULT_WIDTH,
+//     };
+//     let mut f = File::create("config.cfg").expect("Could not create configuration file");
+//     let mut buf = Vec::new();
+//     c.serialize(&mut Serializer::new(&mut buf)).expect("Could not serialize configuration data");
+//     let b = f.write(&buf);
+//     c
+// }
 }
 
 

@@ -308,6 +308,7 @@ pub enum CommandData {
     Interpret(CommandSource),
     List(CommandSource),
     New(CommandSource),
+    Publish,
     Run(CommandSource),
     Save(CommandSource),
     Serve(CommandSource),
@@ -357,12 +358,16 @@ pub struct ProjCfg {
     commands: CommandData,
     junctions: Junctions,
     sync_files: SyncFiles,
+    local_bin_dir: Option<PathBuf>,
+    
     
 }
 
 
 pub struct Proman {
     install_dir: PathBuf,
+    global_bin_dir: PathBuf,
+    user_bin_dir: PathBuf,
     user_dir: PathBuf,
     templates: AllTemplates,
     docs: AllDocs,
