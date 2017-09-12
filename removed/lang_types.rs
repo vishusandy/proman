@@ -1,4 +1,6 @@
 
+// Delete this file or keep???
+
 struct Lang {
     pub backup: Option<String>,
     pub build: Option<String>,
