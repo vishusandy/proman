@@ -1,12 +1,33 @@
+
+extern crate regex;
+extern crate time;
+extern crate serde;
+extern crate rmp_serde as rmps;
+extern crate scan_dir;
+extern crate serde_json;
+
+#[macro_use] extern crate lazy_static;
+#[macro_use] extern crate serde_derive;
+
 mod proj_type;
 
 use proj_type::*;
+
+
+
+use std::io::{Read, Write, BufReader, BufWriter};
+use std::fs::File;
+use serde::{Deserialize, Serialize};
+use rmps::{Deserializer, Serializer};
+use std::time::Instant;
+use scan_dir::ScanDir;
 
 use std::fmt;
 use std::env;
 use std::path::{Path, PathBuf};
 use std::ffi::OsString;
 use std::io::{Write};
+
 
 pub trait PathStr {
     fn strpath(&self) -> String;
@@ -18,6 +39,7 @@ impl PathStr for PathBuf {
 }
 
 impl Config for Proman {
+    
     pub fn parse_all_vars(&self) -> Proman {
         // go through the Proman struct and call replace_vars() on all VarString's
         let all_templates = self.templates;
@@ -65,6 +87,22 @@ impl Config for Proman {
             "" => self..pathstr(),
             _ => {},
         }
+    }
+    pub fn json_serialize(&self, save_to: PathBuf) {
+        let mut f = File::open(get_from.to_str().expect("Could not convert PathBuf to str")).expect("Could not open file to save serialized json data.");
+        
+        let serial = serde_json::to_string(self).expect("Could not serialize json data.");
+        let bytes_written = f.write(ser.as_bytes());
+        
+    }
+    pub fn json_deserialize(&self, get_from: PathBuf) {
+        let mut f = File::open(get_from.to_str().unwrap()).expect("Could not open file to read serialized json data.");
+        let mut buf: String = String::new();
+        
+        let bytes_read = f.read_to_end(&mut buf);
+        let deserial: Proman = serde_json::from_str(&mut buf).expect("Could not deserialze json data.");
+        
+        deserial
     }
 }
 
