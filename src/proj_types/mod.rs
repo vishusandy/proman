@@ -191,6 +191,25 @@ pub enum CommandSource {
     Error,
 }
 
+pub enum GlobalCommand {
+    Docs,
+    Info,
+    List,
+    New,
+    Template,
+}
+pub enum InjectCommand {
+    Backup,
+    Build,
+    Check,
+    Commit,
+    Interpret,
+    Run,
+    Save,
+    Serve,
+    Upload,
+}
+
 #[derive(Hash, Eq, PartialEq, Debug)]
 pub enum Command {
     Backup,
@@ -205,6 +224,7 @@ pub enum Command {
     Run,
     Save,
     Serve,
+    Template,
     Upload,
     Error,
 }
@@ -223,6 +243,7 @@ pub enum CommandData {
     Run(CommandSource),
     Save(CommandSource),
     Serve(CommandSource),
+    Template(CommandSource),
     Upload(CommandSource),
     Error,
 }

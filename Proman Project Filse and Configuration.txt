@@ -49,18 +49,21 @@ c:\
         bin\
             save/commit
             new
-            build
-            test
-            check
-            run
-            upload
-            list
-            backup
+            template
             docs|man
             help
             inject
             info
-            interpret
+            inject\
+                save
+                commit
+                test
+                check
+                run
+                upload
+                list
+                backup
+                interpret
 
         MAYBE:
         snippets\
