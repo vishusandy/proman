@@ -281,6 +281,7 @@ pub enum InjectCommand {
 #[derive(Hash, Eq, PartialEq, Debug)]
 pub enum Command {
     Backup,
+    Bench,
     Build,
     Check,
     Commit,
@@ -292,6 +293,7 @@ pub enum Command {
     Run,
     Save,
     Serve,
+    Test,
     Template,
     Upload,
     Error,

@@ -14,12 +14,22 @@ How to make the proj_type module have the structs/enums to hold all the data but
 
 TODO:
 figure out how VarStr's should reference arguments passed to the executable
+    {{!flag:-f,false}} returns false if the flag is present
+    {{flag:-t,--true}} returns true if the flag is present
+    {{arg:-s,--store}} returns the next argument if flag is present
+    {{arg:0}} is the command that was called
+    {{arg:*}} is the command entire argument string
     maybe something like {{flag:-t,--table}} for an arg that is True if present, 
     or {{!flag:-t,--table}} for a flag that is stored as false is present.
     For a stored type maybe use {{arg:--layout}}
+    If the value of arg is an int less than 256 use {{arg:3}} to specify the 3rd argument passed in
+        the number is the 3rd positional argument, flags are removed
+        all flags {{flag:-t,--table}} and {{arg:-t,--table}} are removed 
+        then the correct positional argument is fetched
     Do not worry about types that parse into structs, conversation happens in called executable
 Allow VarStr's to have custom vars parsed into them
 
+multi binary executable
 
 c:\
     ...\<proj>\
@@ -37,7 +47,7 @@ c:\
     Windows: users\andrew\.proman\  AND c:\program files (should have similar contents, user folder contains custom templates and )
     Linux: ?????
         global.cfg
-        global.cmds
+        bazaar.vcs.cfg // custom version control system
         .env
         templates\
             rust.binary\
@@ -63,16 +73,23 @@ c:\
             inject
             info
             inject\
-                save
-                commit
-                test
-                check
-                run
-                upload
-                list
                 backup
+                bench
+                build
+                check
+                commit
+                docs
+                info
                 interpret
-
+                list
+                new
+                run
+                save
+                serve
+                test
+                template
+                upload
+                stub         // copies stub.exe as <command> when creating custom commands
         MAYBE:
         snippets\
             lang\
@@ -86,6 +103,37 @@ c:\
                 vcs.mercurial.template
                 mecurial\
                     ...
+
+
+Settings:
+GLOBAL
+install_dir
+global_bin_dir
+user_bin_dir
+user_dir
+templates
+docs
+
+
+
+LOCAL
+path
+local_bin_dir
+vcs
+vcs_default_inc: "major|minor|patch"
+custom_vcs_commands: [{on: "<command>", when: "before|after", run: "bazaar.exe", args: "checkout HEAD {{arg:3}}"}]
+lang
+proj_type
+custom_docs
+custom_templates
+junctions
+sync_files
+autoruns: [{on: "<command>", when: "before|after", run: "some.exe" args: "-a {{flag:-t,--thing}} -b {{arg:-b,--build}}"}]
+	Separate flag/arg by : to get the flag/values then separate the values on , and do s.trim()
+custom_commands: [{command: "<command>", run: ""}]
+
+
+
 
 Env Vars:
 proman-global = # defaults to user profile folder

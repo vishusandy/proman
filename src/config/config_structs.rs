@@ -40,8 +40,9 @@ pub struct Document {
     source: PathBuf,
 }
 // a document that is passed as a parameter to an executable
+// an example of the run_str looks like "{{exe}} {{doc}}"
 pub struct ExeDoc {
-    doc: Document,
-    exe: Executable,
-    run_str: VarStr,
+    doc: PathBuf,
+    exe: Option<PathBuf>,
+    run_str: Option<VarStr>,
 }
