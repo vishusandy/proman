@@ -12,6 +12,63 @@ When an executable is called it calls some functions that return the Proman stru
 How to make the proj_type module have the structs/enums to hold all the data but
   at the same time be able to have different languages/project types with different default data???
 
+Solving Multi-Binary Rust Apps:
+  Problem:
+    When running a command for a multi-binary Rust app it will need special args to determine
+    which executable the command should be executed on.
+  Solution A:
+    -Make a LangHandler or maybe ProjHandler which contains more specialized methods to run
+      commands for a speicific language or project type.
+    -The handler would be determined based on the language and project type config string.
+    -For a custom set of instructions that can be stored in a separate config file specify
+      Custom for the project type OR maybe add a use_default_lang_cfg or default_lang_cfg
+      variable that exists in the Local struct which contains the project details.
+
+Config deserialization notes:
+  Specific language/project types may require additional config variables that do not apply
+  to others.  For exmaple Rust can be configured to use different versions using Rustup,
+  some projects in Rust require features which are only available in NIghtly's and thus
+  Rustup must be called to switch compiler versions/targets.  Maybe have a method that
+  calls Rustup to find out the version and if it isn't the specified version run a command
+  that changes it.
+
+Config deserialization:
+  Method 0:
+    Just store the list of commands in the local project config.
+      How would this work for custom commands?
+      And how would additional custom variables be added, like the Target to use for Rust
+    Use the format:  "command-name": "command string"  
+    not sure whether to use quotes for command name.
+  Method A:
+    Method A1:
+      Make a Configurable trait.  When reading the config file iterate through each line
+        and when reach a [Section Name] set configurator: Box<Configurable> to store the
+        struct relating to that section.  Could use a function that returns a trait object
+        based on the name of the string passed into it.
+    Method A2
+      Instead of traits use a closure to determine what function to call.
+    Method A Notes:
+      Since the method needed to deserialize each part would be determined by the input,
+      it is possible to make a Custom language where a method is called to look for a
+      custom.<project-type>.cfg file and the Custom struct determines the basic commands
+      to execute for the built-in commands.
+  Method B:
+    Create a RawConfig struct that contains a str slice of just that section of the config.
+    Make a function that calls a deserialization function based on the section.
+  Method C:
+    Use toml or yaml.  Not sure how well they would be able to store/retrieve content
+    that may use different structs.
+  Method D:
+    Create a deserialization function for each variable.  However this would be awkward
+    when working with different languages and project types which may require additional
+    variables; this approach would need a way to store custom variables.
+  Method E:
+    Create a language.cfg file that can be found in the install, user, and local dirs.
+    Depending on what language is used deserialize it accordingly.
+
+Add an Open command that opens files in your text editor, example load sublime text and open explorer to the proj directory and open notepad with the project notes
+
+
 TODO:
 figure out how VarStr's should reference arguments passed to the executable
     {{!flag:-f,false}} returns false if the flag is present
@@ -30,6 +87,12 @@ figure out how VarStr's should reference arguments passed to the executable
 Allow VarStr's to have custom vars parsed into them
 
 multi binary executable
+
+FUTURE:
+    make it possible for StrVar's to contain conditional code, enabling testing a var for
+        different values and returning different text.  Maybe something like:
+        [[if@this=="something?"?this is the output]]
+
 
 c:\
     ...\<proj>\

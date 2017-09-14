@@ -8,9 +8,10 @@ use std::io::{Write};
 
 
 /*
-global
-    
-local
+    Serialize the Global project settings (which contain the Local settings)
+      into a file stored in the project.
+    If the serialized binary config file is newer than the local and global,
+      do not read the config files again.
     
 */
 
